@@ -1,0 +1,181 @@
+/* ═══════════════════════════════════════════════════════════════
+   ASTROBASE — Global Reset & CSS Variables
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colour palette */
+  --color-bg:          #05061a;        /* deep space black-blue */
+  --color-bg-alt:      #090b2a;
+  --color-surface:     #0d1035;
+  --color-surface-2:   #111540;
+  --color-border:      rgba(130, 100, 255, 0.18);
+
+  --color-purple:      #9b5de5;
+  --color-purple-light:#c084fc;
+  --color-blue:        #3b82f6;
+  --color-blue-light:  #60a5fa;
+  --color-teal:        #2dd4bf;
+  --color-teal-light:  #5eead4;
+
+  --color-text:        #cbd5e1;
+  --color-text-muted:  #64748b;
+  --color-text-bright: #f1f5f9;
+  --color-white:       #ffffff;
+
+  /* Gradients */
+  --gradient-primary:  linear-gradient(135deg, #9b5de5 0%, #3b82f6 100%);
+  --gradient-hero:     radial-gradient(ellipse at 60% 40%, rgba(91,33,182,0.35) 0%, transparent 60%),
+                       radial-gradient(ellipse at 20% 80%, rgba(29,78,216,0.25) 0%, transparent 55%),
+                       linear-gradient(180deg, #05061a 0%, #090b2a 100%);
+  --gradient-card-purple: linear-gradient(135deg, rgba(155,93,229,0.12) 0%, rgba(59,130,246,0.06) 100%);
+  --gradient-card-blue:   linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(45,212,191,0.06) 100%);
+  --gradient-card-teal:   linear-gradient(135deg, rgba(45,212,191,0.12) 0%, rgba(155,93,229,0.06) 100%);
+
+  /* Typography */
+  --font-display: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* Radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-glow-purple: 0 0 40px rgba(155, 93, 229, 0.25);
+  --shadow-glow-blue:   0 0 40px rgba(59, 130, 246, 0.25);
+  --shadow-card:        0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-med:  0.3s ease;
+
+  /* ── Semantic colour tokens (Stage 6 additions) ── */
+  --color-error:        #f87171;
+  --color-error-light:  #fca5a5;
+  --color-error-bg:     rgba(248, 113, 113, 0.08);
+  --color-error-border: rgba(248, 113, 113, 0.30);
+  --color-warning:      #f59e0b;
+  --color-gold:         #fbbf24;
+  --color-success:      var(--color-teal);
+  --color-success-light:var(--color-teal-light);
+  --color-success-bg:   rgba(45, 212, 191, 0.07);
+  --color-success-border: rgba(45, 212, 191, 0.30);
+
+  /* ── Layout widths ── */
+  --layout-narrow: 560px;
+  --layout-mid:    860px;
+  --layout-wide:  1100px;
+
+  /* ── Panel glass tokens ── */
+  --panel-bg:     rgba(13, 16, 53, 0.80);
+  --panel-blur:   blur(16px);
+
+  /* ── Page entry animation ── */
+  --anim-page-in: pageEnter 0.25s ease both;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+/* ─── Utility: visually hidden (accessibility) ───────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Page entry animation ───────────────────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Applied to every page <main> for a smooth route-change fade-in */
+main {
+  animation: var(--anim-page-in);
+}
+
+/* ─── Figma design-system tokens (scoped, non-conflicting) ──────────────
+   These are additive — they extend the existing token system.
+   Naming: fg- prefix on any CSS class that comes from ASTROBASEfigma.
+   The raw CSS variables below are used only by fg- classes.
+─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --fg-bg:        #050910;
+  --fg-panel:     #0b121d;
+  --fg-panel-2:   #101a27;
+  --fg-line:      #1c2b3b;
+  --fg-line-hi:   #344b60;
+  --fg-text:      #eef6fa;
+  --fg-muted:     #8293a3;
+  --fg-cyan:      #5ad8f5;
+  --fg-cyan-dim:  rgba(90, 216, 245, 0.12);
+  --fg-green:     #66df9c;
+  --fg-amber:     #ffc861;
+  --fg-red:       #ff5964;
+  --fg-mono:      'DM Mono', 'SFMono-Regular', Consolas, monospace;
+}
