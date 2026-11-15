@@ -21,7 +21,7 @@ import OutpostResults from './pages/OutpostResults'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/ASTROBASE">
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="app">
         <Navbar />
 
